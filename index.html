@@ -1,0 +1,166 @@
+<html>
+
+<head>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/Bootstrap_v3.3.7.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/mcqCss-v1.css">
+    <script src="js/mcq-v1.js"></script>
+    <link rel="stylesheet" href="css/Bootstrap_v3.3.7.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/makeChips.js"></script>
+    <script src="js/getAll.js"></script>
+    <script src="js/createPreview.js"></script>
+    <script src="js/initialize.js"></script>
+    <script src="js/bindClick.js"></script>
+    <script src="js/fetchEditableItems.js"></script>
+    <script src="js/onQuestionSelect.js"></script>
+    <script src="js/QuestionSetSetter.js"></script>
+    <script src="js/examPage.js"></script>
+    <script src="js/renderQuestion.js"></script>
+    <script src="js/randomizeQuestions.js"></script>
+    <script src="js/QuestionSetNamesHandling.js"></script>
+    <script src="js/paerSubmit.js"></script>
+    <script src="js/checkPreviousAnsweredQuestion.js"></script>
+    <script src="js/fillModalForResults.js"></script>
+    <script src="js/holdCurrentAnswer.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">-->
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">MCQexam</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Home</a></li>
+                        <li><button id="navigate">toggle view</button></li>
+                    </ul>
+                </div>
+            </nav>
+            <div>
+                <div class="container">
+                    <div class="container">
+                        <div class="modal fade" id="results-modal" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <span>Results</span>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body results-modal-content">
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="content">
+                    <div class="well well-lg col-md-5 float-pane">
+                        <div>
+                            <button class="btn btn-info see-results" data-toggle="modal" data-target="#results-modal">see latest exam results</button>
+                        </div>
+                        <div class="type">
+                            <input type="radio" id="type-one" value="single" name="optradio"><label for="type-one">single choice</label>
+                            <input class="rbtn" id="type-two" type="radio" value="multiple" name="optradio"><label for="type-two">multiple choices</label>
+                        </div>
+                        <div class="questionAdder">
+                            <input type='text' class="form-control question" placeholder="enter question"></textarea>
+                        </div>
+                        <div class="input-group choice-adding-div">
+                            <input type="text" class="form-control choiceText" placeholder="Enter choices">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success add-new-choice" type="button">Add</button>
+                            </span>
+                        </div>
+                        <div class="choices">
+
+                        </div>
+                        <div class="answer">
+                            <label for="usr">Answer</label>
+                            <div class="right-answer"></div>
+                        </div>
+                        <div class="save-answers">
+                            <button class="btn btn-success save-set">Save question answer set</button>
+                        </div>
+                    </div>
+                    <div class="well well-lg col-md-7 float-pane preview">
+                        <div class='setterButton'>
+                            <input type="text" class="set-name form-control" disabled="true" placeholder="Set limit of questions for student">
+                            <input type="text" class="set-name form-control" disabled="true" placeholder="Set name">
+                            <button class="btn btn-success setter" disabled="true"><span class="glyphicon glyphicon-ok"></span> save set</button>
+                        </div>
+                        <div class="well well-lg col-md-12 totalSetOfQuestionAnswer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid student-view pageBody">
+        <div class="well well-lg-12 col-md-12 questions-shower">
+            <input type='text' class="form-control username" placeholder="User name">
+            <div class="user-name-and-questionName">
+                <div class='question-names-list well well-lg-12 col-md-12'>
+                </div>
+            </div>
+            <div class="well well-lg-12 col-md-12 content-shower">
+                <!--<div class='well well-lg-2 col-md-2 qstn-thumbnail inside-divs-for-operations innerDivOfContentShower'>
+                </div>-->
+                <div class='well well-lg-12 col-md-12 inside-divs-for-operations innerDivOfContentShower'>
+                    <div class="col col-md-2 col-sm-2">
+                        <button class="btn btn-success previous" disabled="false">previous question</button>
+                    </div>
+                    <div class="col col-md-8 col-sm-8 questionViewer">
+
+                    </div>
+                    <div class="col col-md-2 col-sm-2">
+                        <button class="btn btn-success next" disabled="false">next question</button>
+                    </div>
+                    <div class="col col-md-12 col-sm-12">
+                        <button class="btn btn-success holdsAnswer"><span class='glyphicon glyphicon-ok'></span> submit and next</button>
+                    </div>
+                </div>
+                <button class="btn btn-success paper-submit" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-bookmark submission"></span>   submit paper and end exam</button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close close-modal" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body result">
+                            <p class="result-shower"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default close-modal" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
